@@ -1,12 +1,10 @@
 pipeline {
     agent {
-        label "windows"
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
     }
-tools{
-maven "Maven4.0.0"
-jdk "java8"
-}
-
     stages {
         stage('Build') {
             steps {
